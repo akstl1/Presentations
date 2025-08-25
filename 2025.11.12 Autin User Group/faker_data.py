@@ -5,30 +5,60 @@ import numpy as np
 
 fake = Faker() 
 
+def rgn(x):
+    if x==1:
+        return "North"
+    elif x==2:
+        return "South"
+    elif x==3:
+        return "East"
+    else:
+        return "West"
+
+def contract_status(x):
+    if x==1:
+        return "Approved"
+    elif x==2:
+        return "In Progress"
+    elif x==3:
+        return "Rejected"
+    else:
+        return "Not Contacted"
+
 def input_data(x): 
     client_df = pd.DataFrame({
         'Client Name':[],
         'Client Address':[],
         'Client Email':[],
         'Client Region':[],
-        'Client Status':[]
+        'Client Status':[],
+        'Contract Value':[]
     })
 
-    student_data ={} 
-    for i in range(0, x): 
-        student_data[i]={} 
-        student_data[i]['id']= randint(1, 100) 
-        student_data[i]['name']= fake.name() 
-        student_data[i]['address']= fake.address() 
-        student_data[i]['latitude']= str(fake.latitude()) 
-        student_data[i]['longitude']= str(fake.longitude()) 
-    print(student_data) 
+    for i in range(x): 
+        name = fake.name() 
+        address = fake.address() 
+        email = fake.email()
+        region = rgn(randint(1,4))
+        status = contract_status(randint(1,4))
+        contract_val = randint(1000000, 20000000)
+        new_row = pd.DataFrame({
+        'Client Name':[name],
+        'Client Address':[address],
+        'Client Email':[email],
+        'Client Region':[region],
+        'Client Status':[status],
+        'Contract Value':[contract_val]
+        })
+        client_df = pd.concat([client_df,new_row],ignore_index=True)
+    client_df.to_excel('client_df.xlsx', sheet_name='Sheet1', index=False)
+    
 
 def main(): 
 
     # Enter number of students 
     # For the above task make this 100 
-    number_of_students = 10 
+    number_of_students = 100 
     input_data(number_of_students) 
 main() 
 # The folder or location where this python code 
