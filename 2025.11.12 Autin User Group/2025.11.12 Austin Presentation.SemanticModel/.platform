@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "2025.11.12 Austin Presentation"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "48b6cbfb-aa8a-4e2f-80d6-b60aa1222efa"
+  }
+}
