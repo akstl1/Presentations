@@ -5,6 +5,7 @@ import numpy as np
 
 fake = Faker() 
 
+## set up region function to translate rand int to region
 def rgn(x):
     if x==1:
         return "North"
@@ -15,6 +16,7 @@ def rgn(x):
     else:
         return "West"
 
+## set up region function to translate rand int to client status
 def contract_status(x):
     if x==1:
         return "Approved"
@@ -25,7 +27,9 @@ def contract_status(x):
     else:
         return "Not Contacted"
 
+## Function to get fake data, save to file
 def input_data(x): 
+    ## set up pandas dataframe to store data
     client_df = pd.DataFrame({
         'Client Name':[],
         'Client Address':[],
@@ -35,6 +39,7 @@ def input_data(x):
         'Contract Value':[]
     })
 
+    ## for loop to get x number of clients, and for each give them the required attribute and append to df
     for i in range(x): 
         name = fake.name() 
         address = fake.address() 
@@ -51,16 +56,14 @@ def input_data(x):
         'Contract Value':[contract_val]
         })
         client_df = pd.concat([client_df,new_row],ignore_index=True)
+    
+    ## save df to file
     client_df.to_excel('client_df.xlsx', sheet_name='Sheet1', index=False)
     
-
+## main function to run the input function with number of clients
 def main(): 
 
-    # Enter number of students 
-    # For the above task make this 100 
-    number_of_students = 100 
-    input_data(number_of_students) 
+    # Enter number of clients 
+    number_of_clients = 100 
+    input_data(number_of_clients) 
 main() 
-# The folder or location where this python code 
-# is save there a students.json will be created 
-# having 10 students data. 
