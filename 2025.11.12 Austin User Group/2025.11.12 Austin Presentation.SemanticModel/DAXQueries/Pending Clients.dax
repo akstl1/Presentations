@@ -10,20 +10,9 @@ DEFINE
 			"SumContract_Value", CALCULATE(SUM('Clients'[Contract Value]))
 		)
 
-	VAR __DS0PrimaryWindowed = 
-		TOPN(
-			501,
-			__DS0Core,
-			[SumContract_Value],
-			0,
-			'Clients'[Client Name],
-			1,
-			'Clients'[Client Status],
-			1
-		)
 
 EVALUATE
-	__DS0PrimaryWindowed
+	__DS0Core
 
 ORDER BY
 	[SumContract_Value] DESC, 'Clients'[Client Name], 'Clients'[Client Status]
