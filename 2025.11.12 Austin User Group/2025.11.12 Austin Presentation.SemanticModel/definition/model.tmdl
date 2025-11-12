@@ -8,13 +8,12 @@ model Model
 
 annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
 
-annotation PBIDesktopVersion = 2.146.1026.0 (25.08)+fb98ab832373de81dccd5c01cd96306a48477556
-
-annotation PBI_QueryOrder = ["Clients"]
+annotation PBI_QueryOrder = ["Clients","Client Summary"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
 ref table Clients
+ref table 'Client Summary'
 
 ref cultureInfo en-US
 

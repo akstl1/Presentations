@@ -1,0 +1,6 @@
+relationship AutoDetected_f65877b5-abd6-417a-a2f9-63dc55d32f64
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Client Summary'.Index
+	toColumn: Clients.Index
+

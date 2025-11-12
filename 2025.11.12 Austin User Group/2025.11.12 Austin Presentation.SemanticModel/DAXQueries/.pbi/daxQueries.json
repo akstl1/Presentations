@@ -1,8 +1,12 @@
 {
   "version": "1.0.0",
   "tabOrder": [
-    "Region Summary",
-    "Pending Clients"
+    "Rejected Basic",
+    "Summary Basic",
+    "RejectedRows",
+    "SummaryRows",
+    "Summary Indexed",
+    "Rejected Indexed"
   ],
-  "defaultTab": "Pending Clients"
+  "defaultTab": "Summary Indexed"
 }

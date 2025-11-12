@@ -1,0 +1,51 @@
+table 'Client Summary'
+	lineageTag: 96492ffa-81d9-4fd6-a0d2-36768fd8bf14
+
+	column 'Client Region'
+		dataType: string
+		lineageTag: d1ec79f3-42a4-4dbe-851b-ce5ac8c4a17e
+		summarizeBy: none
+		sourceColumn: Client Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trade Status'
+		dataType: string
+		lineageTag: f65549f2-84e5-46eb-8944-aec3efff5e6d
+		summarizeBy: none
+		sourceColumn: Trade Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: fc6f1608-d6e7-4c08-b7c3-8f143fda297c
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trade Value'
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1b58038f-ddb1-4348-8f9d-efe00e22070f
+		summarizeBy: sum
+		sourceColumn: Trade Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Client Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Clients,
+				    #"Grouped Rows" = Table.Group(Source, {"Client Region", "Trade Status"}, {{"Trade Value", each List.Sum([Trade Value]), type nullable number}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Grouped Rows", "Index", 1, 1, Int64.Type)
+				in
+				    #"Added Index"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

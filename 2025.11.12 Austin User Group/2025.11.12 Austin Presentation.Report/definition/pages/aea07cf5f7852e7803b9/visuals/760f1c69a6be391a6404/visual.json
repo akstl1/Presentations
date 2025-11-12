@@ -1,48 +1,20 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
-  "name": "5b1a1a895c914d70157a",
+  "name": "760f1c69a6be391a6404",
   "position": {
-    "x": 535.60066873656558,
-    "y": 28.125149271554815,
+    "x": 265.35466921423455,
+    "y": 207.88153809410079,
     "z": 1,
-    "height": 348.50728445187485,
-    "width": 622.42178170527825,
+    "height": 280.028660138524,
+    "width": 280.028660138524,
     "tabOrder": 1
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "card",
     "query": {
       "queryState": {
         "Values": {
           "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Client Summary"
-                    }
-                  },
-                  "Property": "Client Region"
-                }
-              },
-              "queryRef": "Client Summary.Client Region",
-              "nativeQueryRef": "Client Region"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Client Summary"
-                    }
-                  },
-                  "Property": "Trade Status"
-                }
-              },
-              "queryRef": "Client Summary.Trade Status",
-              "nativeQueryRef": "Trade Status"
-            },
             {
               "field": {
                 "Aggregation": {
@@ -50,28 +22,27 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Client Summary"
+                          "Entity": "Clients"
                         }
                       },
-                      "Property": "Trade Value"
+                      "Property": "Client Address"
                     }
                   },
-                  "Function": 0
+                  "Function": 5
                 }
               },
-              "queryRef": "Sum(Client Summary.Trade Value)",
-              "nativeQueryRef": "Trade Value",
-              "displayName": "Trade Value"
+              "queryRef": "CountNonNull(Clients.Client Address)",
+              "nativeQueryRef": "Count of Client Address"
             }
           ]
         }
       }
     },
     "objects": {
-      "total": [
+      "categoryLabels": [
         {
           "properties": {
-            "totals": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -96,7 +67,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Region Summary'"
+                  "Value": "'Rejected Items'"
                 }
               }
             },
@@ -104,6 +75,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "30D"
                 }
               }
             }
@@ -136,51 +114,77 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "ab84f17c8f124ceff6a9",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Summary"
-              }
-            },
-            "Property": "Client Region"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4f3125e4300dc809550c",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Client Summary"
-              }
-            },
-            "Property": "Trade Status"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4ef5ca5fb4d9782d1541",
+        "name": "eb64910882958b5aad30",
         "field": {
           "Aggregation": {
             "Expression": {
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Client Summary"
+                    "Entity": "Clients"
                   }
                 },
-                "Property": "Trade Value"
+                "Property": "Client Address"
               }
             },
-            "Function": 0
+            "Function": 5
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "3500df37f223142f4178",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Clients"
+              }
+            },
+            "Property": "Trade Status"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Clients",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "Trade Status"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Rejected'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
     ]
   }

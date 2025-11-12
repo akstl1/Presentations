@@ -1,0 +1,6 @@
+// DAX Query
+
+EVALUATE
+	Row(
+				"RejectCount", (CALCULATE(COUNTA('Clients'[Client Address])))
+	)

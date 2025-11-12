@@ -1,13 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
-  "name": "5b1a1a895c914d70157a",
+  "name": "679f332cac102d587b43",
   "position": {
     "x": 535.60066873656558,
     "y": 28.125149271554815,
-    "z": 1,
+    "z": 1000,
     "height": 348.50728445187485,
-    "width": 622.42178170527825,
-    "tabOrder": 1
+    "width": 622.42178170527825
   },
   "visual": {
     "visualType": "tableEx",
@@ -136,7 +135,61 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "ab84f17c8f124ceff6a9",
+        "name": "10245a62f897d98baadf",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Clients"
+              }
+            },
+            "Property": "Client Region"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "8a193c5c50eb8135f0fb",
+        "ordinal": 1,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Clients"
+                  }
+                },
+                "Property": "Trade Value"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "0917d6a9caba95a618bd",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Clients"
+              }
+            },
+            "Property": "Trade Status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "05681b7abe7469a7926b",
+        "ordinal": 3,
         "field": {
           "Column": {
             "Expression": {
@@ -150,7 +203,82 @@
         "type": "Categorical"
       },
       {
-        "name": "4f3125e4300dc809550c",
+        "name": "dea2bab1e69886211bca",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Client Summary"
+              }
+            },
+            "Property": "Index"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Client Summary",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "And": {
+                  "Left": {
+                    "Comparison": {
+                      "ComparisonKind": 2,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "c"
+                            }
+                          },
+                          "Property": "Index"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "1L"
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Comparison": {
+                      "ComparisonKind": 4,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "c"
+                            }
+                          },
+                          "Property": "Index"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "10L"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "15150f2cc2d090f3f57d",
+        "ordinal": 5,
         "field": {
           "Column": {
             "Expression": {
@@ -164,7 +292,28 @@
         "type": "Categorical"
       },
       {
-        "name": "4ef5ca5fb4d9782d1541",
+        "name": "9f75b424ffb619bafbb4",
+        "ordinal": 6,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Client Summary"
+                  }
+                },
+                "Property": "Trade Volume"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "72ce0c23b7a6dcdf6f58",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -182,6 +331,7 @@
         },
         "type": "Advanced"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

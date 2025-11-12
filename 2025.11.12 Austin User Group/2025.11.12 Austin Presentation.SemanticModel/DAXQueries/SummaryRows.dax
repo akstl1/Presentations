@@ -1,0 +1,5 @@
+// DAX Query
+EVALUATE
+	ROW(
+		"SummaryCount", CALCULATE(COUNTA('Client Summary'[Client Region]))
+	)

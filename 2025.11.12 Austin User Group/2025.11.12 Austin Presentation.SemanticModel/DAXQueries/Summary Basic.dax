@@ -1,0 +1,17 @@
+// DAX Query
+DEFINE
+	VAR __DS0Core = 
+		SUMMARIZECOLUMNS(
+			'Client Summary'[Client Region],
+			'Client Summary'[Trade Status],
+			"Trade Value", CALCULATE(SUM('Client Summary'[Trade Value]))
+		)
+
+	VAR __DS0PrimaryWindowed = 
+		TOPN(501, __DS0Core, 'Client Summary'[Client Region], 1, 'Client Summary'[Trade Status], 1)
+
+EVALUATE
+	__DS0PrimaryWindowed
+
+ORDER BY
+	'Client Summary'[Client Region], 'Client Summary'[Trade Status]

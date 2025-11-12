@@ -33,20 +33,29 @@ table Clients
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Client Status'
+	column 'Trade Status'
 		dataType: string
 		lineageTag: 9caee4d6-d441-442d-995b-2e21c3a71402
 		summarizeBy: none
-		sourceColumn: Client Status
+		sourceColumn: Trade Status
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Contract Value'
+	column 'Trade Value'
 		dataType: decimal
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		lineageTag: 9bc77d92-b482-4f37-8b38-b0ad2c51556c
 		summarizeBy: sum
-		sourceColumn: Contract Value
+		sourceColumn: Trade Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 97abe0cc-2ec7-4c76-b670-15f15aae5012
+		summarizeBy: none
+		sourceColumn: Index
 
 		annotation SummarizationSetBy = Automatic
 
@@ -54,12 +63,14 @@ table Clients
 		mode: import
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\allan\Documents\DS_Projects\Presentations\2025.11.12 Autin User Group\client_df.xlsx"), null, true),
+				    Source = Excel.Workbook(File.Contents("C:\Users\allan\Documents\DS_Projects\Presentations\2025.11.12 Austin User Group\client_df.xlsx"), null, true),
 				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
 				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Client Name", type text}, {"Client Address", type text}, {"Client Email", type text}, {"Client Region", type text}, {"Client Status", type text}, {"Contract Value", Currency.Type}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Client Name", type text}, {"Client Address", type text}, {"Client Email", type text}, {"Client Region", type text}, {"Client Status", type text}, {"Contract Value", Currency.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Contract Value", "Trade Value"}, {"Client Status", "Trade Status"}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Renamed Columns", "Index", 1, 1, Int64.Type)
 				in
-				    #"Changed Type"
+				    #"Added Index"
 
 	annotation PBI_ResultType = Table
 
