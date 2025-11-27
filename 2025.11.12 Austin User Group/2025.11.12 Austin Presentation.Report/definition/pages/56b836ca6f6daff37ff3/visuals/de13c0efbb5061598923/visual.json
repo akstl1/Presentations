@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Clients"
+                      "Entity": "Rejected"
                     }
                   },
                   "Property": "Client Name"
                 }
               },
-              "queryRef": "Clients.Client Name",
+              "queryRef": "Rejected.Client Name",
               "nativeQueryRef": "Client Name"
             },
             {
@@ -34,13 +34,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Clients"
+                      "Entity": "Rejected"
                     }
                   },
                   "Property": "Trade Status"
                 }
               },
-              "queryRef": "Clients.Client Status",
+              "queryRef": "Rejected.Trade Status",
               "nativeQueryRef": "Trade Status"
             },
             {
@@ -50,7 +50,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Clients"
+                          "Entity": "Rejected"
                         }
                       },
                       "Property": "Trade Value"
@@ -59,34 +59,11 @@
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(Clients.Contract Value)",
-              "nativeQueryRef": "Trade Value",
-              "displayName": "Trade Value"
+              "queryRef": "Sum(Rejected.Trade Value)",
+              "nativeQueryRef": "Sum of Trade Value"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Aggregation": {
-                "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Clients"
-                      }
-                    },
-                    "Property": "Trade Value"
-                  }
-                },
-                "Function": 0
-              }
-            },
-            "direction": "Descending"
-          }
-        ]
       }
     },
     "objects": {
@@ -192,7 +169,43 @@
   "filterConfig": {
     "filters": [
       {
+        "name": "0b61838fadddc41b380b",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Rejected"
+              }
+            },
+            "Property": "Client Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "09af4685111b34a21e26",
+        "ordinal": 1,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Rejected"
+                  }
+                },
+                "Property": "Trade Value"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
         "name": "84e31e9b0230a9a00784",
+        "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
@@ -242,48 +255,32 @@
               }
             }
           ]
-        }
+        },
+        "howCreated": "User"
       },
       {
-        "name": "3dfa3a3f0ac761d3e1cc",
+        "name": "444a6cd2b300504518c0",
+        "ordinal": 3,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Clients"
+                "Entity": "Rejected"
               }
             },
-            "Property": "Client Name"
+            "Property": "Trade Status"
           }
         },
         "type": "Categorical"
       },
       {
-        "name": "ae469c09800fb0768ed4",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Clients"
-                  }
-                },
-                "Property": "Trade Value"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5b6cc0632501fdcdd0fc",
+        "name": "6de3d0e220bd2b0ca034",
+        "ordinal": 4,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Clients"
+                "Entity": "Rejected"
               }
             },
             "Property": "Index"
@@ -294,8 +291,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "c",
-              "Entity": "Clients",
+              "Name": "r",
+              "Entity": "Rejected",
               "Type": 0
             }
           ],
@@ -305,12 +302,12 @@
                 "And": {
                   "Left": {
                     "Comparison": {
-                      "ComparisonKind": 4,
+                      "ComparisonKind": 2,
                       "Left": {
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Source": "c"
+                              "Source": "r"
                             }
                           },
                           "Property": "Index"
@@ -330,7 +327,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Source": "c"
+                              "Source": "r"
                             }
                           },
                           "Property": "Index"
@@ -350,6 +347,7 @@
         },
         "howCreated": "User"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

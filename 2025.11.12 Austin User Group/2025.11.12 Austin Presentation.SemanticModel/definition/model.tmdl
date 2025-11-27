@@ -8,12 +8,13 @@ model Model
 
 annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
 
-annotation PBI_QueryOrder = ["Clients","Client Summary"]
+annotation PBI_QueryOrder = ["Clients","Client Summary","Rejected"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
 ref table Clients
 ref table 'Client Summary'
+ref table Rejected
 
 ref cultureInfo en-US
 

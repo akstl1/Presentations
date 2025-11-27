@@ -5,8 +5,8 @@
     "Summary Basic",
     "RejectedRows",
     "SummaryRows",
-    "Summary Indexed",
-    "Rejected Indexed"
+    "Rejected Indexed",
+    "Summary Indexed"
   ],
-  "defaultTab": "Summary Indexed"
+  "defaultTab": "Rejected Indexed"
 }

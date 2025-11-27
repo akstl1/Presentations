@@ -5,17 +5,17 @@ DEFINE
 
 	VAR __DS0Core = 
 		SUMMARIZECOLUMNS(
-			'Clients'[Client Name],
-			'Clients'[Trade Status],
+			'Rejected'[Client Name],
+			'Rejected'[Trade Status],
 			__DS0FilterTable,
-			"Trade Value", CALCULATE(SUM('Clients'[Trade Value]))
+			"Trade Value", CALCULATE(SUM('Rejected'[Trade Value]))
 		)
 
 	VAR __DS0PrimaryWindowed = 
-		TOPN(501, __DS0Core, [Trade Value], 0, 'Clients'[Client Name], 1, 'Clients'[Trade Status], 1)
+		TOPN(501, __DS0Core, 'Rejected'[Client Name], 1, 'Rejected'[Trade Status], 1)
 
 EVALUATE
 	__DS0PrimaryWindowed
 
 ORDER BY
-	[Trade Value] DESC, 'Clients'[Client Name], 'Clients'[Trade Status]
+	'Rejected'[Client Name], 'Rejected'[Trade Status]
